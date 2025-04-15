@@ -6,7 +6,7 @@ export default function useLocation() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async () => {
+    (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status !== "granted") {
@@ -14,6 +14,12 @@ export default function useLocation() {
         return;
       }
       let location = await Location.getCurrentPositionAsync({});
-    };
+      setCoords({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+    })();
   }, []);
+
+  return { coords, errorMsg };
 }
