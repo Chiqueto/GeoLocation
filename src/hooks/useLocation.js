@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function useLocation() {
   const [coords, setCoords] = useState(null);
-  const [error, setError] = useState(null);
+  const [errorMsg, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
